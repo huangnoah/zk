@@ -514,6 +514,30 @@ zFlex = { //static methods
 		//notify parent widget that all of its children with hflex/vflex is done.
 		wgt.parent.afterChildrenFlex_(wgt);
 		wgt._flexFixed = false;
+		
+		/* 
+		 * ZK-1957:	
+		 * the head of mesh widget should give fixed width 
+		 * when one of headers have min hflex
+		 */
+		if(wgt.$instanceof(zul.mesh.HeaderWidget) ) {
+			var mesh = wgt.getMeshWidget(),
+				nhead = mesh.$n('head');
+				
+			if(nhead) {
+				var head = mesh.getHeadWidget(),
+					wd = 0;
+				
+				for (var c = head.firstChild; c; c = c.nextSibling ) {
+					var cn = c.$n(),
+						w = !c.getHflex() ? cn.style.width : cn.offsetWidth;
+					if(w && ((w = parseInt(w)) > 0)) 
+						wd += w;
+				}
+			
+				nhead.style.width = jq.px(wd);
+			}
+		}
 	},
 	onFitSize: function () {
 		var wgt = this,

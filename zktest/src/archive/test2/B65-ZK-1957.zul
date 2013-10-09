@@ -1,0 +1,30 @@
+<zk>
+	the scroll bar should not disappear when dragging, after resizing
+	the browser, all work fine
+
+	<window
+		title="ListBox with hflex='min'-column inside vbox -> scrollbar DISAPPEARS"
+		border="normal" width="600px">
+		<vbox>
+			<listbox multiple="true">
+				<frozen columns="1" />
+				<listhead>
+					<listheader id="" label="Combo Box1" width="100px" />
+					<listheader id="" label="hlex column" hflex="min" />
+					<listheader id="" label="Combo Box3" width="100px" />
+					<listheader id="" label="Combo Box4" width="100px" />
+					<listheader id="" label="Combo Box5" width="100px" />
+					<listheader id="" label="Combo Box6" width="100px" />
+				</listhead>
+				<listitem value="">
+					<listcell label="Static value AAAA" />
+					<listcell label="Static value AAAA" />
+					<listcell label="Static value AAAA" />
+					<listcell label="Static value AAAA" />
+					<listcell label="Static value AAAA" />
+					<listcell label="Static value AAAA" />
+				</listitem>
+			</listbox>
+		</vbox>
+	</window>
+</zk>
